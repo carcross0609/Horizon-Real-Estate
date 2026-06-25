@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh api *)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "mcp__6290a2c9-08a5-4be2-a9de-6a237bafa4f0__firecrawl_scrape",
+      "Bash(ls ~/.claude/skills/ 2>/dev/null && echo \"exists\" || echo \"no skills dir\")",
+      "Bash(find ~/.claude -name \"*.md\" | head -20)",
+      "Bash(python3 -m json.tool)",
+      "WebFetch(domain:api.github.com)",
+      "Bash(curl -s \"https://api.github.com/repos/anthropics/skills/contents/skills/frontend-design/SKILL.md\")",
+      "Bash(python3 -c \"import sys, json, base64; data = json.load\\(sys.stdin\\); print\\(base64.b64decode\\(data['content']\\).decode\\('utf-8'\\)\\)\")",
+      "Bash(mkdir -p ~/.claude/skills/frontend-design)"
+    ]
+  }
+}
