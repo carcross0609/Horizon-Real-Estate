@@ -458,8 +458,8 @@ img { max-width: 100%; display: block; }
    CTA BAND
    ============================================================ */
 .cta-band { position: relative; padding: 130px 0; text-align: center; color: #fff; overflow: hidden; }
-.cta-band__bg { position: absolute; inset: 0; border: 0; border-radius: 0; min-height: 0; }
-.cta-band__overlay { position: absolute; inset: 0; background: rgba(28, 22, 14, 0.62); }
+.cta-band__bg { position: absolute; inset: 0; border: 0; border-radius: 0; min-height: 0; opacity: 0.75; }
+.cta-band__overlay { position: absolute; inset: 0; background: rgba(20, 16, 10, 0.72); }
 .cta-band__inner { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 22px; }
 .cta-band__title {
   font-family: var(--serif); font-weight: 600;
