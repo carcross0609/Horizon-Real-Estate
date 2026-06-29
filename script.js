@@ -46,11 +46,36 @@
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
 
-  /* ---------- Mobile menu toggle (smooth-scroll to contact) ---------- */
+  /* ---------- Mobile menu toggle ----------
+     The hamburger opens a dropdown panel holding the nav links. We toggle
+     .is-open on the nav (CSS handles the panel + hamburger→X animation),
+     keep aria-expanded in sync, and close on link tap, outside click, or Esc. */
   var toggle = document.getElementById("navToggle");
-  if (toggle) {
-    toggle.addEventListener("click", function () {
-      document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
+  if (toggle && nav) {
+    toggle.setAttribute("aria-expanded", "false");
+
+    function closeMenu() {
+      nav.classList.remove("is-open");
+      toggle.setAttribute("aria-expanded", "false");
+    }
+
+    toggle.addEventListener("click", function (e) {
+      e.stopPropagation();
+      var open = nav.classList.toggle("is-open");
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+
+    // Tapping a link navigates, so collapse the menu behind it.
+    nav.querySelectorAll(".nav__links a").forEach(function (a) {
+      a.addEventListener("click", closeMenu);
+    });
+
+    // Close when tapping outside the nav, or pressing Escape.
+    document.addEventListener("click", function (e) {
+      if (nav.classList.contains("is-open") && !nav.contains(e.target)) closeMenu();
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeMenu();
     });
   }
 
