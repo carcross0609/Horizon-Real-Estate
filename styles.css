@@ -345,6 +345,20 @@ img { max-width: 100%; display: block; }
 .tile__text { color: var(--muted); font-size: 0.94rem; }
 .tile__text--light { color: rgba(255, 255, 255, 0.85); }
 
+/* Step 1 "Discover" image dimmed to match the stats / CTA bands
+   (image opacity 0.75 + a flat rgba(20,16,10,0.72) overlay). The overlay sits
+   above the photo but below the caption (z-index:2 vs caption z-index:2, tree
+   order puts the caption last) so the step text stays legible. */
+.tile--dim .ph__img { opacity: 0.75; }
+.tile--dim::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(20, 16, 10, 0.72);
+  z-index: 2;
+  pointer-events: none;
+}
+
 /* ============================================================
    FEATURED LISTINGS
    ============================================================ */
