@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Horizon Realty Group — Find Your Next Home</title>
+  <!-- Mark that JS is available so animated elements only start hidden when we
+       can actually reveal them (no-JS visitors see everything immediately). -->
+  <script>document.documentElement.classList.add("js");</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <!-- Calendly scheduling popup -->
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
+  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+</head>
+<body>
+
+  <!-- ===================== HEADER / NAV ===================== -->
+  <header class="nav" id="nav">
+    <div class="container nav__inner">
+      <a href="#hero" class="brand" aria-label="Horizon Realty Group home">
+        <span class="brand__mark" aria-hidden="true"></span>
+        <span class="brand__name">Horizon Realty Group</span>
+      </a>
+      <nav class="nav__links" aria-label="Primary">
+        <a href="#hero">Home</a>
+        <a href="#team">About</a>
+        <a href="#listings">Listings</a>
+        <a href="#testimonials">Reviews</a>
+      </nav>
+      <a href="#contact" class="btn btn--gold btn--sm nav__cta">Book a Call</a>
+      <button class="nav__toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero" id="hero">
+    <video class="hero__video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+      <source src="assets/hero-bg.mp4" type="video/mp4" />
+    </video>
+    <div class="hero__overlay"></div>
+    <div class="container hero__inner">
+      <p class="eyebrow eyebrow--light">The Perfect Place To Find</p>
+      <h1 class="hero__title">Your Next Home</h1>
+      <p class="hero__sub">Horizon Realty Group helps you discover, evaluate, and secure the home
+        that fits your life — with expert guidance from the first tour to the final signature.</p>
+      <div class="hero__cta">
+        <a href="#contact" class="btn btn--gold">Book a Call</a>
+        <a href="#listings" class="btn btn--ghost">View Listings</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PAGE SHEET =====================
+       Wraps all content after the hero. With the hero set to position:sticky,
+       this higher-z-index sheet slides up and rolls over the pinned hero as the
+       user scrolls — a pure-CSS, 60fps "luxury reveal". -->
+  <div class="page-sheet">
+
+  <!-- ===================== HOW IT WORKS ===================== -->
+  <section class="section process" id="process">
+    <div class="container">
+      <div class="process__head">
+        <p class="eyebrow">How It Works</p>
+        <h2 class="section__title">A Clear Process Designed To Make<br />Your Property Decision Easier</h2>
+      </div>
+
+      <div class="tabs" role="tablist">
+        <button class="tab is-active" role="tab">For Buyers</button>
+        <span class="tabs__divider">/</span>
+        <button class="tab" role="tab">For Sellers</button>
+      </div>
+
+      <div class="process__grid">
+        <!-- Step 1 — image tile -->
+        <article class="tile tile--img tile--tall">
+          <div class="ph ph--dark tile__img" data-label="Lakeside home">
+            <img src="assets/lakesidehome.webp" alt="Modern lakeside home" class="ph__img" loading="lazy" onerror="this.remove()" />
+          </div>
+          <div class="tile__caption">
+            <p class="tile__step">Step 1</p>
+            <h3 class="tile__title tile__title--light">Discover</h3>
+            <p class="tile__text tile__text--light">We start by understanding your goals, budget, and
+              lifestyle to find neighborhoods and homes that truly fit.</p>
+          </div>
+        </article>
+
+        <!-- Step 2 — text tile -->
+        <article class="tile tile--text">
+          <p class="tile__step">Step 2</p>
+          <h3 class="tile__title">Evaluate</h3>
+          <p class="tile__text">We guide property tours, compare market values, and review the details
+            so you can decide with confidence and zero pressure.</p>
+        </article>
+
+        <!-- decorative image tile -->
+        <article class="tile tile--img">
+          <div class="ph ph--dark tile__img" data-label="Handing over keys">
+            <img src="assets/handingoverkeys.jpg" alt="Handing over the keys" class="ph__img" loading="lazy" onerror="this.remove()" />
+          </div>
+        </article>
+
+        <!-- decorative image tile -->
+        <article class="tile tile--img">
+          <div class="ph ph--dark tile__img" data-label="Reviewing plans together">
+            <img src="assets/reviewingplanstogether.jpg" alt="Clients reviewing plans with an agent" class="ph__img" loading="lazy" onerror="this.remove()" />
+          </div>
+        </article>
+
+        <!-- Step 3 — text tile -->
+        <article class="tile tile--text">
+          <p class="tile__step">Step 3</p>
+          <h3 class="tile__title">Secure</h3>
+          <p class="tile__text">We negotiate favorable terms, manage the paperwork, and support closing
+            for a smooth, stress-free purchase.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FEATURED LISTINGS ===================== -->
+  <section class="section listings" id="listings">
+    <div class="container">
+      <div class="listings__head">
+        <h2 class="section__title section__title--center">Featured Listings <sup class="count">(3)</sup></h2>
+        <p class="section__sub">A handpicked selection of homes from our current portfolio.</p>
+      </div>
+
+      <div class="listings__grid" id="listingsGrid"><!-- cards injected by script.js --></div>
+
+      <div class="listings__more">
+        <a href="listings.html" class="btn btn--gold">Show All Listings</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== STATS BAND ===================== -->
+  <section class="stats">
+    <div class="ph ph--dark stats__bg" data-label="Lifestyle — clients at home"></div>
+    <div class="stats__overlay"></div>
+    <div class="container stats__grid">
+      <div class="stat">
+        <p class="stat__num">10+ Years</p>
+        <p class="stat__label">Of trusted real estate experience across buying &amp; selling.</p>
+      </div>
+      <div class="stat">
+        <p class="stat__num">500+ Homes</p>
+        <p class="stat__label">Successfully bought and sold for happy clients.</p>
+      </div>
+      <div class="stat">
+        <p class="stat__num">50% Faster</p>
+        <p class="stat__label">Average time to close compared to the local market.</p>
+      </div>
+      <div class="stat">
+        <p class="stat__num">30 Days</p>
+        <p class="stat__label">Average time to sell a listed property with us.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CLIENT SUPPORT ===================== -->
+  <section class="section support" id="support">
+    <div class="container">
+      <div class="support__head">
+        <p class="eyebrow eyebrow--center">How We Help</p>
+        <h2 class="section__title section__title--center">Client Support</h2>
+      </div>
+
+      <div class="support__body">
+        <div class="accordion" id="supportAccordion">
+          <div class="acc-item is-open">
+            <button class="acc-head">
+              <span class="acc-title">Home Buying</span>
+              <span class="acc-num">01</span>
+            </button>
+            <div class="acc-panel">
+              <p>For those looking to buy a property, we guide you through every step — from your first
+                search to the keys in your hand.</p>
+              <a href="#contact" class="link-gold">Book a Call &rarr;</a>
+            </div>
+          </div>
+          <div class="acc-item">
+            <button class="acc-head">
+              <span class="acc-title">Property Selling</span>
+              <span class="acc-num">02</span>
+            </button>
+            <div class="acc-panel">
+              <p>For those ready to sell, we position your home with sharp marketing and pricing to
+                attract the right buyers, fast.</p>
+              <a href="#contact" class="link-gold">Book a Call &rarr;</a>
+            </div>
+          </div>
+          <div class="acc-item">
+            <button class="acc-head">
+              <span class="acc-title">Expert Guidance</span>
+              <span class="acc-num">03</span>
+            </button>
+            <div class="acc-panel">
+              <p>For those making important property decisions, our team provides clear, data-driven
+                advice you can rely on.</p>
+              <a href="#contact" class="link-gold">Book a Call &rarr;</a>
+            </div>
+          </div>
+        </div>
+        <div class="ph support__img" data-label="A home we helped sell">
+          <img src="assets/ahomewehelpedsell.jpeg" alt="A home we helped sell" class="ph__img" loading="lazy" onerror="this.remove()" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== TEAM ===================== -->
+  <section class="section team" id="team">
+    <div class="container">
+      <div class="team__head">
+        <p class="eyebrow eyebrow--center">Meet The Team</p>
+        <h2 class="section__title section__title--center">The People Behind Horizon</h2>
+      </div>
+      <div class="team__grid">
+        <article class="team-card">
+          <div class="team-avatar" aria-hidden="true">SM</div>
+          <h3 class="team-name">Sarah Martinez</h3>
+          <p class="team-role">CEO &amp; Founder</p>
+        </article>
+        <article class="team-card">
+          <div class="team-avatar" aria-hidden="true">JL</div>
+          <h3 class="team-name">Jordan Lee</h3>
+          <p class="team-role">Head of Sales</p>
+        </article>
+        <article class="team-card">
+          <div class="team-avatar" aria-hidden="true">KP</div>
+          <h3 class="team-name">Kevin Patel</h3>
+          <p class="team-role">Lead Agent</p>
+        </article>
+        <article class="team-card">
+          <div class="team-avatar" aria-hidden="true">MC</div>
+          <h3 class="team-name">Mia Chen</h3>
+          <p class="team-role">Marketing Director</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== TESTIMONIALS ===================== -->
+  <section class="section testimonials" id="testimonials">
+    <div class="container">
+      <div class="testimonials__head">
+        <h2 class="section__title">Testimonials</h2>
+        <p class="section__sub section__sub--right">Real stories from clients who trusted Horizon
+          with their move.</p>
+      </div>
+
+      <div class="quote-card">
+        <div class="ph quote-card__img" data-label="Happy clients">
+          <img id="tImg" src="assets/happyclient.jpeg" alt="Happy client" class="ph__img" loading="lazy" onerror="this.style.display='none'" />
+        </div>
+        <div class="quote-card__body">
+          <span class="quote-mark" aria-hidden="true">&ldquo;</span>
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="quote-card__text" id="tText">Horizon Realty Group made buying our first home so
+            easy! Jordan was super responsive, and we felt taken care of every step of the way.</p>
+          <div class="quote-card__person">
+            <p class="quote-card__name" id="tName">Emily R.</p>
+            <p class="quote-card__role" id="tRole">Home Buyer · Austin, TX</p>
+          </div>
+          <div class="dots" id="tDots" aria-hidden="true">
+            <span class="is-active"></span><span></span><span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CTA BAND ===================== -->
+  <section class="cta-band">
+    <div class="ph ph--dark cta-band__bg" data-label="Landscape — open horizon">
+      <img src="assets/landscape-openhorizon.jpg" alt="Open horizon landscape" class="ph__img" loading="lazy" onerror="this.remove()" />
+    </div>
+    <div class="cta-band__overlay"></div>
+    <div class="container cta-band__inner">
+      <p class="eyebrow eyebrow--light">Your Next Move</p>
+      <h2 class="cta-band__title">Every property journey starts with<br />a simple conversation.</h2>
+      <a href="#contact" class="btn btn--gold">Book a Call</a>
+    </div>
+  </section>
+
+  <!-- ===================== FAQ ===================== -->
+  <section class="section faq" id="faq">
+    <div class="container faq__grid">
+      <div class="faq__aside">
+        <h2 class="section__title">FAQ</h2>
+        <div class="faq__badge">
+          <div class="ph faq__badge-img" data-label="Office"></div>
+          <p>500+ real estate<br />questions answered</p>
+        </div>
+      </div>
+
+      <div class="accordion accordion--faq" id="faqAccordion">
+        <div class="acc-item is-open">
+          <button class="acc-head">
+            <span class="acc-q">Do you work with both buyers and sellers?</span>
+            <span class="acc-icon" aria-hidden="true"></span>
+          </button>
+          <div class="acc-panel">
+            <p>Yes. We support buyers, sellers, and property owners, tailoring our approach to your
+              goals, timeline, and local market conditions.</p>
+          </div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-head">
+            <span class="acc-q">How do I get started with you?</span>
+            <span class="acc-icon" aria-hidden="true"></span>
+          </button>
+          <div class="acc-panel"><p>Book a call and we'll learn about your needs, then map out a clear
+            plan for your next move.</p></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-head">
+            <span class="acc-q">Do you help with pricing and market analysis?</span>
+            <span class="acc-icon" aria-hidden="true"></span>
+          </button>
+          <div class="acc-panel"><p>Absolutely. We provide data-driven pricing and market analysis so
+            you can make confident decisions.</p></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-head">
+            <span class="acc-q">Will you guide me through the entire process?</span>
+            <span class="acc-icon" aria-hidden="true"></span>
+          </button>
+          <div class="acc-panel"><p>From first tour to final closing, we stay with you at every step
+            with clarity, care, and confidence.</p></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-head">
+            <span class="acc-q">What areas do you serve?</span>
+            <span class="acc-icon" aria-hidden="true"></span>
+          </button>
+          <div class="acc-panel"><p>We serve clients across California, Texas, and Illinois, with
+            current listings in Santa Monica, Austin, and Chicago.</p></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-head">
+            <span class="acc-q">How long does the process usually take?</span>
+            <span class="acc-icon" aria-hidden="true"></span>
+          </button>
+          <div class="acc-panel"><p>It varies by goal and market, but many of our clients close in
+            about 30 days from offer to keys.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER CTA + FOOTER ===================== -->
+  <footer class="footer" id="contact">
+    <div class="container">
+      <div class="footer__cta">
+        <h2 class="footer__title">Ready To Talk About<br />Your Next Move?</h2>
+        <a href="#contact" class="btn btn--light">Book a Call</a>
+      </div>
+
+      <div class="footer__cols">
+        <div class="footer__col">
+          <p class="footer__label">Location</p>
+          <p>1100 Ocean Avenue,<br />Santa Monica, CA 90401</p>
+        </div>
+        <div class="footer__col">
+          <p class="footer__label">Contact</p>
+          <p>+1 (310) 555-0142<br />hello@horizonrealtygroup.com</p>
+        </div>
+        <div class="footer__col">
+          <p class="footer__label">Socials</p>
+          <div class="socials">
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="social">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+              </svg>
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="social">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                <rect x="2" y="9" width="4" height="12"></rect>
+                <circle cx="4" cy="4" r="2"></circle>
+              </svg>
+            </a>
+            <a href="https://x.com" target="_blank" rel="noopener noreferrer" aria-label="X (formerly Twitter)" class="social">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer__col">
+          <p class="footer__label">Other Links</p>
+          <nav class="footer__links">
+            <a href="#team">About</a>
+            <a href="#listings">Listings</a>
+            <a href="#contact">Contact</a>
+          </nav>
+        </div>
+      </div>
+
+      <div class="footer__bar">
+        <p>&copy; 2026 Horizon Realty Group. All Rights Reserved.</p>
+        <p>Find your next home with Horizon.</p>
+      </div>
+    </div>
+  </footer>
+
+  </div><!-- /.page-sheet -->
+
+  <script src="script.js"></script>
+</body>
+</html>

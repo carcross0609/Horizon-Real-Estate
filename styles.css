@@ -1,0 +1,703 @@
+/* ============================================================
+   Listings — Real Estate Landing Page
+   Palette sampled from reference design:
+   bronze-gold #8E6314 · deep coffee-brown #451C01 · cream/white
+   ============================================================ */
+
+:root {
+  --gold: #9c6f1c;
+  --gold-2: #b98a3c;
+  --gold-deep: #8e6314;
+  --brown: #451c01;
+  --brown-head: #3f1d09;
+  --ink: #1b1916;
+  --muted: #6f6a62;
+  --muted-light: rgba(255, 255, 255, 0.72);
+  --cream: #f6f3ee;
+  --cream-2: #efe9e0;
+  --white: #ffffff;
+  --line: #e7e1d8;
+  --radius: 16px;
+  --radius-lg: 24px;
+  --maxw: 1180px;
+  --serif: "Playfair Display", Georgia, "Times New Roman", serif;
+  --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+
+body {
+  font-family: var(--sans);
+  color: var(--ink);
+  background: var(--white);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+
+.container { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
+
+.section { padding: 110px 0; }
+
+/* ---------- Shared typography ---------- */
+.section__title {
+  font-family: var(--serif);
+  color: var(--brown-head);
+  font-weight: 600;
+  font-size: clamp(2rem, 4.4vw, 3.4rem);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+}
+.section__title--center { text-align: center; }
+
+.section__sub { color: var(--muted); font-size: 1.02rem; max-width: 460px; }
+.section__sub--right { text-align: right; }
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--gold-deep);
+}
+.eyebrow--light { color: rgba(255, 255, 255, 0.82); }
+.eyebrow--center { text-align: center; }
+
+.count { font-size: 0.42em; color: var(--gold-deep); font-family: var(--sans); top: -1.4em; }
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 15px 30px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.2s ease, box-shadow 0.2s ease;
+  white-space: nowrap;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn--sm { padding: 11px 22px; font-size: 0.88rem; }
+
+.btn--gold {
+  background: linear-gradient(180deg, var(--gold-2), var(--gold));
+  color: #fff;
+  box-shadow: 0 8px 22px rgba(142, 99, 20, 0.28);
+}
+.btn--gold:hover { box-shadow: 0 12px 28px rgba(142, 99, 20, 0.36); }
+
+.btn--ghost {
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--ink);
+}
+.btn--ghost:hover { background: #fff; }
+
+.btn--light { background: #fff; color: var(--brown); }
+
+.link-gold {
+  display: inline-block;
+  margin-top: 14px;
+  color: var(--gold-deep);
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+/* ---------- Image placeholders ---------- */
+.ph {
+  position: relative;
+  background:
+    repeating-linear-gradient(45deg, rgba(142,99,20,0.05) 0 14px, rgba(142,99,20,0.09) 14px 28px),
+    var(--cream-2);
+  border: 1.5px dashed rgba(142, 99, 20, 0.4);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  min-height: 120px;
+}
+.ph::after {
+  content: "▦  IMAGE PLACEHOLDER\A" attr(data-label);
+  white-space: pre;
+  font-family: var(--sans);
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1.7;
+  text-transform: uppercase;
+  color: rgba(108, 78, 24, 0.78);
+  padding: 12px;
+}
+.ph--dark {
+  background:
+    repeating-linear-gradient(45deg, rgba(255,255,255,0.04) 0 14px, rgba(255,255,255,0.07) 14px 28px),
+    #2c2722;
+  border-color: rgba(255, 255, 255, 0.28);
+}
+.ph--dark::after { color: rgba(255, 255, 255, 0.82); }
+
+/* ============================================================
+   HEADER / NAV
+   ============================================================ */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 16px 0;
+  transition: background 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease;
+}
+.nav__inner { display: flex; align-items: center; gap: 28px; }
+
+.brand { display: flex; align-items: center; gap: 10px; color: #fff; }
+.nav.scrolled .brand { color: var(--ink); }
+.brand__mark {
+  width: 26px; height: 26px;
+  background: linear-gradient(135deg, var(--gold-2), var(--gold-deep));
+  border-radius: 7px;
+  transform: rotate(45deg);
+  box-shadow: inset 0 0 0 3px rgba(255,255,255,0.25);
+}
+.brand__name { font-family: var(--serif); font-weight: 600; font-size: 1.3rem; }
+
+.nav__links { display: flex; gap: 30px; margin-left: auto; }
+.nav__links a {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.94rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+.nav__links a:hover { color: #fff; }
+.nav.scrolled .nav__links a { color: var(--muted); }
+.nav.scrolled .nav__links a:hover { color: var(--ink); }
+
+.nav__cta { margin-left: 4px; }
+
+.nav.scrolled {
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 1px 0 var(--line);
+  padding: 12px 0;
+}
+
+.nav__toggle { display: none; background: none; border: 0; flex-direction: column; gap: 5px; cursor: pointer; }
+.nav__toggle span { width: 24px; height: 2px; background: #fff; border-radius: 2px; }
+.nav.scrolled .nav__toggle span { background: var(--ink); }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+  /* Sticky so the hero pins to the viewport while the page-sheet below scrolls
+     up and rolls over it. z-index keeps it beneath the sheet. */
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  min-height: 100vh;
+  min-height: 100svh; /* avoids mobile address-bar jumpiness where supported */
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+  overflow: hidden;
+  /* Dark base sits behind the video so the reduced-opacity footage reads as a
+     subtle, muted backdrop rather than a bright, distracting image. */
+  background-color: #11152a;
+}
+
+/* ============================================================
+   PAGE SHEET — luxury "roll over the hero" reveal
+   ============================================================ */
+/* The sheet holds everything after the hero. Because the hero is position:sticky
+   and pinned at top:0, this higher-z-index block slides up over it as the user
+   scrolls — like a sheet of paper drawn over the previous chapter. Pure CSS:
+   no scroll listeners, no transforms recalculated in JS, so it stays at 60fps
+   and never shifts layout. */
+.page-sheet {
+  position: relative;
+  z-index: 2;
+  margin-top: 0; /* sits flush below the fold — only the hero shows at rest, then
+                    rolls up over the pinned hero as the user scrolls */
+  border-radius: 30px 30px 0 0;
+  overflow: hidden; /* clips the first section to the rounded top corners */
+  background: var(--white);
+  /* Soft upward shadow casts onto the hero, emphasising the sheet's depth. */
+  box-shadow: 0 -20px 50px rgba(18, 14, 8, 0.28);
+}
+
+/* Background video: cover the whole hero, sit behind everything, and run at a
+   low opacity so it blends into the dark base and never competes with the
+   headline. */
+.hero__video {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.5;
+}
+
+/* Two-layer scrim for readability:
+   1. a vertical gradient (darker top for the nav, warm dusk tone at the bottom
+      to match the brand palette and blend into the next section);
+   2. a soft radial pool of shadow centred on the headline so the text and
+      buttons always have a dark bed to stand against. */
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(ellipse 75% 55% at 50% 46%, rgba(8, 10, 22, 0.45) 0%, rgba(8, 10, 22, 0) 72%),
+    linear-gradient(180deg, rgba(14, 18, 34, 0.72) 0%, rgba(14, 18, 34, 0.42) 34%, rgba(22, 18, 22, 0.5) 68%, rgba(28, 22, 14, 0.82) 100%);
+}
+.hero__inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+  padding-top: 70px;
+}
+.hero__title {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: clamp(3rem, 9vw, 7rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  /* Soft shadow lifts the headline off the video for guaranteed legibility. */
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.45);
+}
+.hero__sub {
+  max-width: 520px;
+  font-size: 1.06rem;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.4);
+}
+.hero__cta { display: flex; gap: 14px; margin-top: 8px; flex-wrap: wrap; justify-content: center; }
+
+/* Accessibility: users who prefer reduced motion get the static dark backdrop
+   instead of the looping video. */
+@media (prefers-reduced-motion: reduce) {
+  .hero__video { display: none; }
+}
+
+/* ============================================================
+   HOW IT WORKS / PROCESS
+   ============================================================ */
+.process { background: var(--white); }
+.process__head { max-width: 720px; }
+.process__head .section__title { margin-top: 14px; }
+
+.tabs { display: flex; align-items: center; gap: 14px; margin: 30px 0 32px; }
+.tab {
+  background: none; border: 0; cursor: pointer;
+  font-family: var(--serif); font-size: 1.25rem; font-weight: 500;
+  color: var(--muted);
+}
+.tab.is-active { color: var(--brown-head); }
+.tabs__divider { color: var(--line); font-size: 1.25rem; }
+
+.process__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 250px;
+  gap: 20px;
+}
+.tile {
+  border-radius: var(--radius);
+  overflow: hidden;
+  position: relative;
+}
+.tile--tall { grid-row: span 2; }
+.tile--img .tile__img { position: absolute; inset: 0; border-radius: var(--radius); min-height: 0; }
+.tile--img::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.6));
+  pointer-events: none;
+}
+.tile__caption { position: absolute; z-index: 2; left: 0; bottom: 0; padding: 26px; }
+.tile--text {
+  background: var(--cream);
+  border: 1px solid var(--line);
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.tile__step {
+  font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.16em;
+  color: var(--gold-deep); font-weight: 600; margin-bottom: 10px;
+}
+.tile__title { font-family: var(--serif); font-weight: 600; font-size: 1.6rem; color: var(--brown-head); margin-bottom: 10px; }
+.tile__title--light { color: #fff; }
+.tile__text { color: var(--muted); font-size: 0.94rem; }
+.tile__text--light { color: rgba(255, 255, 255, 0.85); }
+
+/* ============================================================
+   FEATURED LISTINGS
+   ============================================================ */
+.listings { background: var(--cream); }
+.listings__head { text-align: center; margin-bottom: 50px; }
+.listings__head .section__sub { margin: 14px auto 0; }
+
+.listings__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 26px;
+}
+.card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.card:hover { transform: translateY(-4px); box-shadow: 0 16px 34px rgba(60, 40, 10, 0.12); }
+.card__media { position: relative; }
+.card__img { border-radius: 0; min-height: 200px; border-left: 0; border-right: 0; border-top: 0; }
+.card__tag {
+  position: absolute; top: 14px; left: 14px;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--brown); font-size: 0.72rem; font-weight: 600;
+  padding: 5px 12px; border-radius: 20px;
+}
+.card__body { padding: 20px; }
+.card__row {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 12px;
+}
+.card__name { font-family: var(--serif); font-weight: 600; font-size: 1.18rem; color: var(--ink); }
+.card__price { color: var(--gold-deep); font-weight: 700; font-size: 1.05rem; white-space: nowrap; }
+.card__loc { color: var(--muted); font-size: 0.86rem; margin-top: 4px; }
+.card__specs {
+  display: flex; gap: 18px; margin-top: 16px; padding-top: 16px;
+  border-top: 1px solid var(--line);
+  color: var(--muted); font-size: 0.82rem;
+}
+.card__specs span { display: flex; align-items: center; gap: 6px; }
+.card__specs i { width: 14px; height: 14px; border-radius: 4px; background: var(--cream-2); display: inline-block; }
+
+.listings__more { text-align: center; margin-top: 46px; }
+
+/* ============================================================
+   STATS BAND
+   ============================================================ */
+.stats { position: relative; padding: 80px 0; color: #fff; overflow: hidden; }
+.stats__bg { position: absolute; inset: 0; border: 0; border-radius: 0; min-height: 0; }
+.stats__overlay { position: absolute; inset: 0; background: rgba(20, 16, 10, 0.66); }
+.stats__grid {
+  position: relative; z-index: 2;
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px;
+}
+.stat__num { font-family: var(--serif); font-weight: 600; font-size: clamp(1.8rem, 3.4vw, 2.6rem); margin-bottom: 8px; }
+.stat__label { color: rgba(255, 255, 255, 0.78); font-size: 0.88rem; max-width: 220px; }
+
+/* ============================================================
+   CLIENT SUPPORT
+   ============================================================ */
+.support { background: var(--white); }
+.support__head { margin-bottom: 46px; }
+.support__head .section__title { margin-top: 12px; }
+.support__body { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 50px; align-items: start; }
+
+.accordion { display: flex; flex-direction: column; }
+.acc-item { border-bottom: 1px solid var(--line); }
+.acc-head {
+  width: 100%; background: none; border: 0; cursor: pointer;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding: 24px 8px; text-align: left;
+}
+.acc-title { font-family: var(--serif); font-size: 1.5rem; font-weight: 600; color: var(--brown-head); }
+.acc-num { color: var(--muted); font-size: 0.95rem; font-weight: 600; }
+.acc-item.is-open { background: var(--cream); border-radius: 12px; }
+.acc-panel {
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.32s ease, padding 0.32s ease;
+  padding: 0 8px;
+  color: var(--muted);
+}
+.acc-item.is-open .acc-panel { max-height: 260px; padding: 0 8px 24px; }
+.support__img { align-self: stretch; min-height: 360px; }
+
+/* ============================================================
+   TESTIMONIALS
+   ============================================================ */
+.testimonials { background: var(--cream); }
+.testimonials__head {
+  display: flex; justify-content: space-between; align-items: flex-end; gap: 30px;
+  margin-bottom: 40px;
+}
+.quote-card {
+  background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg);
+  display: grid; grid-template-columns: 320px 1fr; overflow: hidden;
+}
+.quote-card__img { border-radius: 0; min-height: 380px; border: 0; }
+.quote-card__body { padding: 48px 54px; position: relative; }
+.quote-mark { font-family: var(--serif); font-size: 5rem; line-height: 0.6; color: var(--brown-head); display: block; }
+.stars { color: var(--gold); letter-spacing: 3px; margin: 20px 0 18px; font-size: 1.1rem; }
+.quote-card__text { font-size: 1.16rem; line-height: 1.7; color: var(--ink); max-width: 620px; }
+.quote-card__person { margin-top: 28px; }
+.quote-card__name { font-weight: 600; color: var(--ink); }
+.quote-card__role { color: var(--muted); font-size: 0.86rem; }
+.dots { position: absolute; right: 54px; bottom: 48px; display: flex; gap: 8px; }
+.dots span { width: 9px; height: 9px; border-radius: 50%; background: var(--cream-2); }
+.dots span.is-active { background: var(--gold); }
+
+/* ============================================================
+   CTA BAND
+   ============================================================ */
+.cta-band { position: relative; padding: 130px 0; text-align: center; color: #fff; overflow: hidden; }
+.cta-band__bg { position: absolute; inset: 0; border: 0; border-radius: 0; min-height: 0; }
+.cta-band__overlay { position: absolute; inset: 0; background: rgba(28, 22, 14, 0.62); }
+.cta-band__inner { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 22px; }
+.cta-band__title {
+  font-family: var(--serif); font-weight: 600;
+  font-size: clamp(1.9rem, 4.6vw, 3.4rem); line-height: 1.12; color: #fff;
+}
+
+/* ============================================================
+   FAQ
+   ============================================================ */
+.faq { background: var(--white); }
+.faq__grid { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 60px; align-items: start; }
+.faq__badge { display: flex; align-items: center; gap: 14px; margin-top: 40px; }
+.faq__badge-img { width: 64px; height: 64px; min-height: 0; border-radius: 50%; flex-shrink: 0; }
+.faq__badge-img::after { content: "▦"; font-size: 1rem; }
+.faq__badge p { color: var(--muted); font-size: 0.9rem; }
+
+.accordion--faq .acc-item { border-bottom: 1px solid var(--line); }
+.accordion--faq .acc-item.is-open { background: var(--cream); }
+.accordion--faq .acc-q { font-family: var(--sans); font-size: 1.02rem; font-weight: 600; color: var(--ink); }
+.acc-icon { position: relative; width: 16px; height: 16px; flex-shrink: 0; }
+.acc-icon::before, .acc-icon::after {
+  content: ""; position: absolute; background: var(--gold-deep);
+  left: 50%; top: 50%; transform: translate(-50%, -50%);
+}
+.acc-icon::before { width: 14px; height: 2px; }
+.acc-icon::after { width: 2px; height: 14px; transition: transform 0.25s ease; }
+.acc-item.is-open .acc-icon::after { transform: translate(-50%, -50%) scaleY(0); }
+
+/* ============================================================
+   FOOTER — second overlapping "sheet" that rolls over the FAQ
+   ============================================================ */
+/* Mirrors the hero reveal: the footer sits above the preceding section with a
+   higher stacking order, large rounded top corners and a soft upward shadow, and
+   a negative margin so it overlaps and rolls over the content as you scroll to
+   the end — a final "chapter" sliding into place. */
+.footer {
+  position: relative;
+  z-index: 1;
+  margin-top: -52px;
+  border-radius: 30px 30px 0 0;
+  box-shadow: 0 -20px 50px rgba(18, 14, 8, 0.22);
+  background: var(--brown);
+  color: rgba(255, 255, 255, 0.82);
+  padding: 116px 0 30px;
+}
+.footer__cta {
+  display: flex; justify-content: space-between; align-items: center; gap: 30px;
+  padding-bottom: 70px; border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  flex-wrap: wrap;
+}
+.footer__title { font-family: var(--serif); font-weight: 600; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.12; color: #fff; }
+
+.footer__cols {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px;
+  padding: 60px 0;
+}
+.footer__label { color: #fff; font-weight: 600; margin-bottom: 14px; }
+.footer__col p { font-size: 0.92rem; line-height: 1.7; }
+.footer__links { display: flex; flex-direction: column; gap: 8px; }
+.footer__links a:hover { color: #fff; }
+
+.socials { display: flex; flex-wrap: nowrap; gap: 20px; }
+.social {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: none;
+  background: #fff;
+  color: #666;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 250ms ease, background-color 250ms ease, color 250ms ease;
+}
+.social svg { width: 22px; height: 22px; display: block; }
+.social:hover,
+.social:focus-visible {
+  transform: translateY(-3px);
+  background: var(--gold);
+  color: #fff;
+}
+
+@media (max-width: 640px) {
+  .socials { justify-content: center; }
+  .social { width: 48px; height: 48px; }
+}
+
+.footer__bar {
+  display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap;
+  padding-top: 26px; border-top: 1px solid rgba(255, 255, 255, 0.14);
+  font-size: 0.85rem; color: rgba(255, 255, 255, 0.6);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 900px) {
+  .section { padding: 80px 0; }
+  .nav__links { display: none; }
+  .nav__toggle { display: flex; }
+  .nav__cta { margin-left: auto; }
+  .process__grid { grid-template-columns: 1fr 1fr; grid-auto-rows: 220px; }
+  .listings__grid { grid-template-columns: 1fr 1fr; }
+  .stats__grid { grid-template-columns: 1fr 1fr; gap: 36px 24px; }
+  .support__body { grid-template-columns: 1fr; gap: 36px; }
+  .support__img { min-height: 280px; }
+  .quote-card { grid-template-columns: 1fr; }
+  .quote-card__img { min-height: 240px; }
+  .quote-card__body { padding: 36px; }
+  .dots { position: static; margin-top: 24px; }
+  .faq__grid { grid-template-columns: 1fr; gap: 32px; }
+  .testimonials__head { flex-direction: column; align-items: flex-start; }
+  .section__sub--right { text-align: left; }
+}
+
+@media (max-width: 560px) {
+  .container { padding: 0 18px; }
+  .process__grid { grid-template-columns: 1fr; grid-auto-rows: 240px; }
+  .tile--tall { grid-row: span 1; }
+  .listings__grid { grid-template-columns: 1fr; }
+  .stats__grid { grid-template-columns: 1fr; }
+  .footer__cols { grid-template-columns: 1fr 1fr; }
+  .footer__cta { flex-direction: column; align-items: flex-start; }
+  .hero__cta { width: 100%; }
+  .hero__cta .btn { flex: 1; }
+}
+
+/* ============================================================
+   SCROLL REVEAL + HERO INTRO
+   ============================================================ */
+
+/* Elements start slightly lowered and transparent, then ease up into place as
+   they scroll into view (class toggled by script.js). The cubic-bezier gives a
+   soft, decelerating "settle" that reads as elegant rather than bouncy. */
+/* The .reveal class is added ONLY by script.js, so without JS nothing is ever
+   hidden. Elements start lowered + transparent, then ease up when .reveal--in
+   is toggled (on scroll, or immediately for the hero). */
+.reveal {
+  opacity: 0;
+  transform: translateY(34px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.reveal.reveal--in {
+  opacity: 1;
+  transform: none;
+}
+
+/* Accessibility: no entrance motion for users who prefer reduced motion
+   (script.js also skips adding .reveal in that case, this is a belt-and-braces
+   guard). */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* ============================================================
+   REAL IMAGES IN PLACEHOLDERS
+   ============================================================ */
+/* A real photo that fills an image placeholder. It covers the dashed label
+   when the file exists; script's onerror removes it when missing so the
+   labelled placeholder shows instead. */
+.ph__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+/* ============================================================
+   TEAM
+   ============================================================ */
+.team { background: var(--white); }
+.team__head { text-align: center; margin-bottom: 50px; }
+.team__head .section__title { margin-top: 12px; }
+.team__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px; }
+.team-card {
+  background: var(--cream);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 38px 22px;
+  text-align: center;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.team-card:hover { transform: translateY(-4px); box-shadow: 0 16px 34px rgba(60, 40, 10, 0.12); }
+.team-avatar {
+  width: 84px; height: 84px; border-radius: 50%;
+  margin: 0 auto 18px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--serif); font-weight: 600; font-size: 1.7rem; color: #fff;
+  letter-spacing: 0.02em;
+  background: linear-gradient(135deg, var(--gold-2), var(--gold-deep));
+  box-shadow: inset 0 0 0 4px rgba(255, 255, 255, 0.25);
+}
+.team-name { font-family: var(--serif); font-weight: 600; font-size: 1.25rem; color: var(--brown-head); margin-bottom: 4px; }
+.team-role { color: var(--muted); font-size: 0.9rem; }
+
+@media (max-width: 900px) {
+  .team__grid { grid-template-columns: 1fr 1fr; gap: 20px; }
+}
+@media (max-width: 560px) {
+  .team__grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* ============================================================
+   INNER PAGES (All Listings) — solid nav + page header
+   ============================================================ */
+/* These pages have no dark hero behind the fixed nav, so the nav is solid and
+   dark-on-light at all times (not transparent like the homepage). */
+.page-inner .nav {
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 1px 0 var(--line);
+}
+.page-inner .brand { color: var(--ink); }
+.page-inner .nav__links a { color: var(--muted); }
+.page-inner .nav__links a:hover { color: var(--ink); }
+.page-inner .nav__links a[aria-current="page"] { color: var(--gold-deep); }
+.page-inner .nav__toggle span { background: var(--ink); }
+
+.listings-hero {
+  padding: 150px 0 40px;
+  text-align: center;
+  background: var(--white);
+}
+.listings-hero .section__title { margin-top: 12px; }
+.listings-hero__sub {
+  color: var(--muted);
+  font-size: 1.02rem;
+  max-width: 520px;
+  margin: 14px auto 0;
+}
+.listings--page { padding-top: 30px; }
+.listings--page .listings__more { margin-top: 50px; }

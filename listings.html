@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>All Listings — Horizon Realty Group</title>
+  <script>document.documentElement.classList.add("js");</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <!-- Calendly scheduling popup -->
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
+  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+</head>
+<body class="page-inner">
+
+  <!-- ===================== HEADER / NAV ===================== -->
+  <header class="nav" id="nav">
+    <div class="container nav__inner">
+      <a href="index.html#hero" class="brand" aria-label="Horizon Realty Group home">
+        <span class="brand__mark" aria-hidden="true"></span>
+        <span class="brand__name">Horizon Realty Group</span>
+      </a>
+      <nav class="nav__links" aria-label="Primary">
+        <a href="index.html#hero">Home</a>
+        <a href="index.html#team">About</a>
+        <a href="listings.html" aria-current="page">Listings</a>
+        <a href="index.html#testimonials">Reviews</a>
+      </nav>
+      <a href="#contact" class="btn btn--gold btn--sm nav__cta">Book a Call</a>
+      <button class="nav__toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===================== PAGE HEADER ===================== -->
+  <section class="listings-hero">
+    <div class="container">
+      <p class="eyebrow eyebrow--center">Our Portfolio</p>
+      <h1 class="section__title section__title--center">All Listings</h1>
+      <p class="listings-hero__sub">Browse our full collection of available homes across the country.</p>
+    </div>
+  </section>
+
+  <!-- ===================== LISTINGS GRID ===================== -->
+  <section class="section listings listings--page" id="listings">
+    <div class="container">
+      <div class="listings__grid" id="allListingsGrid"><!-- cards injected by script.js --></div>
+      <div class="listings__more">
+        <a href="#contact" class="btn btn--gold">Book a Call</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER CTA + FOOTER ===================== -->
+  <footer class="footer" id="contact">
+    <div class="container">
+      <div class="footer__cta">
+        <h2 class="footer__title">Ready To Talk About<br />Your Next Move?</h2>
+        <a href="#contact" class="btn btn--light">Book a Call</a>
+      </div>
+
+      <div class="footer__cols">
+        <div class="footer__col">
+          <p class="footer__label">Location</p>
+          <p>1100 Ocean Avenue,<br />Santa Monica, CA 90401</p>
+        </div>
+        <div class="footer__col">
+          <p class="footer__label">Contact</p>
+          <p>+1 (310) 555-0142<br />hello@horizonrealtygroup.com</p>
+        </div>
+        <div class="footer__col">
+          <p class="footer__label">Socials</p>
+          <div class="socials">
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="social">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+              </svg>
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="social">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                <rect x="2" y="9" width="4" height="12"></rect>
+                <circle cx="4" cy="4" r="2"></circle>
+              </svg>
+            </a>
+            <a href="https://x.com" target="_blank" rel="noopener noreferrer" aria-label="X (formerly Twitter)" class="social">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer__col">
+          <p class="footer__label">Other Links</p>
+          <nav class="footer__links">
+            <a href="index.html#team">About</a>
+            <a href="listings.html">Listings</a>
+            <a href="#contact">Contact</a>
+          </nav>
+        </div>
+      </div>
+
+      <div class="footer__bar">
+        <p>&copy; 2026 Horizon Realty Group. All Rights Reserved.</p>
+        <p>Find your next home with Horizon.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
