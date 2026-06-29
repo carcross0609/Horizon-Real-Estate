@@ -345,16 +345,17 @@ img { max-width: 100%; display: block; }
 .tile__text { color: var(--muted); font-size: 0.94rem; }
 .tile__text--light { color: rgba(255, 255, 255, 0.85); }
 
-/* Step 1 "Discover" image dimmed to match the stats / CTA bands
-   (image opacity 0.75 + a flat rgba(20,16,10,0.72) overlay). The overlay sits
-   above the photo but below the caption (z-index:2 vs caption z-index:2, tree
-   order puts the caption last) so the step text stays legible. */
-.tile--dim .ph__img { opacity: 0.75; }
+/* Step 1 "Discover" image. The photo stays fully opaque so the dashed
+   placeholder label can never bleed through it, and the dimming comes purely
+   from a lighter overlay — bright enough to enjoy the photo, dark enough that
+   the white caption stays legible. The overlay sits above the photo but below
+   the caption (both z-index:2; tree order puts the caption last). */
+.tile--dim .tile__img::after { content: none; } /* drop the placeholder label */
 .tile--dim::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(20, 16, 10, 0.72);
+  background: rgba(20, 16, 10, 0.5);
   z-index: 2;
   pointer-events: none;
 }
