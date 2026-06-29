@@ -10,7 +10,8 @@
       "WebFetch(domain:api.github.com)",
       "Bash(curl -s \"https://api.github.com/repos/anthropics/skills/contents/skills/frontend-design/SKILL.md\")",
       "Bash(python3 -c \"import sys, json, base64; data = json.load\\(sys.stdin\\); print\\(base64.b64decode\\(data['content']\\).decode\\('utf-8'\\)\\)\")",
-      "Bash(mkdir -p ~/.claude/skills/frontend-design)"
+      "Bash(mkdir -p ~/.claude/skills/frontend-design)",
+      "Bash(find ~/.claude/projects -name \"*.jsonl\" -type f -mmin -1440 2>/dev/null | head -50)"
     ]
   }
 }

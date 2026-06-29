@@ -1,0 +1,14 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "static",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-c",
+        "import os; os.chdir('/private/tmp/claude-501/-Users-carsoncrossno-Desktop-Real-Estate-Website/2c453ec5-780f-4efd-836d-0b98b57927cd/scratchpad/site'); import http.server; http.server.ThreadingHTTPServer.allow_reuse_address = True; http.server.ThreadingHTTPServer(('127.0.0.1', 4602), http.server.SimpleHTTPRequestHandler).serve_forever()"
+      ],
+      "port": 4602
+    }
+  ]
+}

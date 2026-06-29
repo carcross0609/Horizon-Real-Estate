@@ -99,6 +99,25 @@
   initAccordion("supportAccordion", false);
   initAccordion("faqAccordion", false);
 
+  /* ---------- Client Support: swap the image to match the open tab ----------
+     Each support accordion item carries a data-img / data-alt; clicking a tab
+     shows that tab's photo in the shared support image frame. */
+  (function setupSupportImage() {
+    var root = document.getElementById("supportAccordion");
+    var img = document.getElementById("supportImg");
+    if (!root || !img) return;
+    root.querySelectorAll(".acc-item").forEach(function (item) {
+      var head = item.querySelector(".acc-head");
+      if (!head) return;
+      head.addEventListener("click", function () {
+        var src = item.getAttribute("data-img");
+        if (!src || img.getAttribute("src") === src) return;
+        img.src = src;
+        img.alt = item.getAttribute("data-alt") || "";
+      });
+    });
+  })();
+
   /* ---------- Process tabs (visual toggle) ---------- */
   document.querySelectorAll(".tabs .tab").forEach(function (tab) {
     tab.addEventListener("click", function () {
