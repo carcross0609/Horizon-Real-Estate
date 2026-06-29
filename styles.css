@@ -359,6 +359,9 @@ img { max-width: 100%; display: block; }
   z-index: 2;
   pointer-events: none;
 }
+/* "Step 1" label is gold by default (legible on the cream text tiles), but it
+   disappears against the dimmed photo here — switch it to white. */
+.tile--dim .tile__step { color: #fff; }
 
 /* ============================================================
    FEATURED LISTINGS
@@ -722,6 +725,14 @@ img { max-width: 100%; display: block; }
   height: 100%;
   object-fit: cover;
   z-index: 1;
+}
+
+/* Once a placeholder holds a real photo, drop the dashed "placeholder" frame
+   (and any striped backing) so the image reads as a finished image, not a
+   stand-in. Empty placeholders keep their dashed border. */
+.ph:has(.ph__img) {
+  border: none;
+  background: none;
 }
 
 /* ============================================================
